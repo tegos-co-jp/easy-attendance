@@ -7,7 +7,7 @@ Version: 0.0.1
 Author: Tegos
 Author URI: https://www.tegos.co.jp/
 License: GPL2
-Text Domain: tegos-test
+Text Domain: easy-attendance
 Domain Path: /languages
 */
 
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 if ( ! class_exists( 'TEGOS' ) ) :
 
     class TEGOS {
-        public const DOMAIN = 'tegos-test';
+
         public const POST_TYPE = "tegos_time";
         public const POST_TYPES = "tegos_times";
         public const POSTMETA_NAME = "tegos_time__";
@@ -45,7 +45,6 @@ if ( ! class_exists( 'TEGOS' ) ) :
         var $colums = array();
 
         function initialize() {
-            load_plugin_textdomain(self::DOMAIN, false, basename( dirname( __FILE__ ) ).'/languages' );
             // Define settings.
             $this->colums = array(
                 self::POSTMETA_COLUMN__NAME, //'name',
@@ -56,11 +55,11 @@ if ( ! class_exists( 'TEGOS' ) ) :
                 'memo',
             );
             $this->namelist = array(
-                __('社員AA', 'tegos-test'),
-                __('社員BB', 'tegos-test'),
-                __('社員CC', 'tegos-test'),
-                __('社員DD', 'tegos-test'),
-                __('社員EE', 'tegos-test'),
+                __('社員AA', 'easy-attendance'),
+                __('社員BB', 'easy-attendance'),
+                __('社員CC', 'easy-attendance'),
+                __('社員DD', 'easy-attendance'),
+                __('社員EE', 'easy-attendance'),
             );
         }
     }
@@ -89,16 +88,22 @@ define( 'TEGOS_TEST__PLUGIN_URL', plugins_url( '/', __FILE__ ) );
 register_activation_hook( __FILE__, array( 'Tegos_Test', 'plugin_activation' ) );
 register_deactivation_hook( __FILE__, array( 'Tegos_Test', 'plugin_deactivation' ) );
 
-require_once( TEGOS_TEST__PLUGIN_DIR . 'class.tegos-test.php' );
+require_once( TEGOS_TEST__PLUGIN_DIR . 'class.easy-attendance.php' );
 add_action( 'init', array( 'Tegos_Test', 'init' ) );
-require_once( TEGOS_TEST__PLUGIN_DIR . 'class.tegos-test-post.php' );
+require_once( TEGOS_TEST__PLUGIN_DIR . 'class.easy-attendance-post.php' );
 add_action( 'init', array( 'Tegos_Test_Post', 'create_post_type' ) );
 add_action( 'init', array( 'Tegos_Test_Post', 'tegos_exportcsvdata' ) );
 add_action( 'init', array( 'Tegos_Test_Post', 'init' ) );
 
 if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
-    require_once( TEGOS_TEST__PLUGIN_DIR . 'class.tegos-test-setting.php' );
+    require_once( TEGOS_TEST__PLUGIN_DIR . 'class.easy-attendance-setting.php' );
 	add_action( 'init', array( 'Tegos_Test_Setting', 'init' ) );
 }
 
+function easy_attendance_plugin_override() {
+
+    define('PLUGIN_NAME', 'easy-attendance');
+    load_plugin_textdomain(PLUGIN_NAME,false,'wp-content/plugins/'.PLUGIN_NAME.'/languages');
+}
+add_action( 'plugins_loaded', 'easy_attendance_plugin_override' );
 

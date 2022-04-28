@@ -24,8 +24,8 @@ class Tegos_Test_Setting {
 
 	public static function admin_menu() {
 		add_menu_page(
-			__( 'Tegos 設定画面' , 'tegos-test'),
-			__( 'Tegos ' , 'tegos-test'),
+			__( ' 設定画面' , 'tegos-easy-attendance'),
+			__( 'Tegos ' , 'easy-attendance'),
 			'manage_options',
 			'tegossetting',
 			array( __CLASS__, 'view_menu' ),
@@ -33,8 +33,8 @@ class Tegos_Test_Setting {
 		//add_menu_pageで追加したメニューのサブメニュー一覧のタイトルを変更
 		add_submenu_page(
 			"tegossetting",
-			__( 'Tegos 設定画面' , 'tegos-test'),
-			__( 'タイトル設定' , 'tegos-test'),
+			__( 'Tegos 設定画面' , 'easy-attendance'),
+			__( 'タイトル設定' , 'easy-attendance'),
 			'manage_options',
 			'tegossetting',
 			array( __CLASS__, 'view_menu' ),

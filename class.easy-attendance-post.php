@@ -26,13 +26,13 @@ class Tegos_Test_Post {
             TEGOS::POST_TYPES,                // 投稿タイプ名の定義
             [
                 'labels' => [
-                    'name' => __( 'TEGOS勤怠' , 'tegos-test'),             // 管理画面上で表示する投稿タイプ名
+                    'name' => __( 'TEGOS勤怠' , 'easy-attendance'),             // 管理画面上で表示する投稿タイプ名
                     'singular_name' => TEGOS::POST_TYPE,     // カスタム投稿の識別名
-                    'menu_name' => __( 'てご勤怠' , 'tegos-test'),     // メニュー名のテキスト
-                    'all_items' => __( '勤怠一覧' , 'tegos-test'),     // サブメニュー名のテキスト
-                    'add_new' => __( '勤怠追加' , 'tegos-test'),    // 「新規追加」のテキスト
-                    'add_new_item' => __( '勤怠を追加' , 'tegos-test'), // 「新規〜を追加」のテキスト
-                    'edit_item' => __( '勤怠を編集' , 'tegos-test'), // 「〜を編集」のテキスト
+                    'menu_name' => __( 'てご勤怠' , 'easy-attendance'),     // メニュー名のテキスト
+                    'all_items' => __( '勤怠一覧' , 'easy-attendance'),     // サブメニュー名のテキスト
+                    'add_new' => __( '勤怠追加' , 'easy-attendance'),    // 「新規追加」のテキスト
+                    'add_new_item' => __( '勤怠を追加' , 'easy-attendance'), // 「新規〜を追加」のテキスト
+                    'edit_item' => __( '勤怠を編集' , 'easy-attendance'), // 「〜を編集」のテキスト
                 ],
                 'public'        => true,    // カスタム投稿タイプの表示(trueにする)
                 'has_archive'   => true,    // カスタム投稿一覧(true:表示/false:非表示)
@@ -74,7 +74,7 @@ class Tegos_Test_Post {
     function create_custom_fields(){
         add_meta_box(
             TEGOS::POST_TYPE.'_meta_box',            //編集画面セクションID
-            __( 'TEGOSきんたい' , 'tegos-test'), //編集画面セクションのタイトル
+            __( 'TEGOSきんたい' , 'easy-attendance'), //編集画面セクションのタイトル
             array( __CLASS__, 'insert_custom_fields' ), //編集画面セクションにHTML出力する関数
             TEGOS::POST_TYPES,                //投稿タイプ名
             'normal' //編集画面セクションが表示される部分
@@ -84,8 +84,8 @@ class Tegos_Test_Post {
     function create_sub_menu(){
         add_submenu_page(
             'edit.php?post_type='.TEGOS::POST_TYPES,    // 親メニュー
-            __( '勤怠CSV出力' , 'tegos-test'),          // ページタイトル
-            __( 'CSV出力' , 'tegos-test'),      // サブメニューの管理画面上での名前
+            __( '勤怠CSV出力' , 'easy-attendance'),          // ページタイトル
+            __( 'CSV出力' , 'easy-attendance'),      // サブメニューの管理画面上での名前
             'manage_options',   // メニュー表示する際に必要な権限
             'tegosoutputcsv',
             array( __CLASS__, 'view_outputcsv' ),
