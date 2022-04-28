@@ -1,12 +1,14 @@
 <?php
 /*
-Plugin Name: TEGOS Test Plugin
+Plugin Name: TEGOS Easy Attendance Plugin
 Plugin URI: https://www.tegos.co.jp/
 Description: Product registration
 Version: 0.0.1
 Author: Tegos
 Author URI: https://www.tegos.co.jp/
 License: GPL2
+Text Domain: tegos-test
+Domain Path: /languages
 */
 
 /*  Copyright 2022 tegos (email : info@tegos.co.jp)
@@ -30,6 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 if ( ! class_exists( 'TEGOS' ) ) :
 
     class TEGOS {
+        public const DOMAIN = 'tegos-test';
         public const POST_TYPE = "tegos_time";
         public const POST_TYPES = "tegos_times";
         public const POSTMETA_NAME = "tegos_time__";
@@ -42,6 +45,7 @@ if ( ! class_exists( 'TEGOS' ) ) :
         var $colums = array();
 
         function initialize() {
+            load_plugin_textdomain(self::DOMAIN, false, basename( dirname( __FILE__ ) ).'/languages' );
             // Define settings.
             $this->colums = array(
                 self::POSTMETA_COLUMN__NAME, //'name',
@@ -75,7 +79,7 @@ if ( ! class_exists( 'TEGOS' ) ) :
     $tegos = tegos();
 
 endif; // class_exists check
-    
+
 define( 'TEGOS_TEST__VERSION', '0.0.1' );
 define( 'TEGOS_TEST__MINIMUM_WP_VERSION', '4.0' );
 define( 'TEGOS_TEST__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
