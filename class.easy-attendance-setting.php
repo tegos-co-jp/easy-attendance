@@ -3,7 +3,7 @@
 class Tegos_Test_Setting {
 
 	private static $initiated = false;
-	
+
 	public static function init() {
 		if ( ! self::$initiated ) {
 			self::init_hooks();
@@ -24,8 +24,8 @@ class Tegos_Test_Setting {
 
 	public static function admin_menu() {
 		add_menu_page(
-			__( ' 設定画面' , 'tegos-easy-attendance'),
-			__( 'Tegos ' , 'easy-attendance'),
+			__( 'Easy Attendance Settings' , 'tegos-easy-attendance'),
+			__( 'Easy Attendance Settings ' , 'easy-attendance'),
 			'manage_options',
 			'tegossetting',
 			array( __CLASS__, 'view_menu' ),
@@ -33,8 +33,8 @@ class Tegos_Test_Setting {
 		//add_menu_pageで追加したメニューのサブメニュー一覧のタイトルを変更
 		add_submenu_page(
 			"tegossetting",
-			__( 'Tegos 設定画面' , 'easy-attendance'),
-			__( 'タイトル設定' , 'easy-attendance'),
+			__( 'Easy Attendance Settings' , 'easy-attendance'),
+			__( 'Title Settings' , 'easy-attendance'),
 			'manage_options',
 			'tegossetting',
 			array( __CLASS__, 'view_menu' ),
@@ -45,10 +45,6 @@ class Tegos_Test_Setting {
 		$__option = TEGOS::OPTION_NAME;
 		$__file = TEGOS_TEST__PLUGIN_DIR . 'views/'. 'setting.php';
 		include( $__file );
-	}
-
-	public static function view_menu_sub() {
-		echo "HelloHelloWorld";
 	}
 
 	function register_mysettings() {
