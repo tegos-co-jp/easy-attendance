@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: TEGOS Easy Attendance Plugin
-Plugin URI: https://www.tegos.co.jp/
+Plugin Name: Easy Attendance
+Plugin URI: https://www.tegos.co.jp/easy-attendance-plugin/
 Description: Product registration
 Version: 0.0.1
 Author: TEGOS.K.K
-Author URI: https://www.tegos.co.jp/
+Author URI: https://www.tegos.co.jp/aboutus/
 License: GPL2
 Text Domain: easy-attendance
 Domain Path: /languages

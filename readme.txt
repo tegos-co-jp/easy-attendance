@@ -9,15 +9,15 @@ Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin provides custom post types in a simplified format.
+"Easy Attendance" provides custom post types in a simplified format.
 It is possible to output registered custom post types in CSV format.
-You can use this plugin to output CSV with members and time period.
+You can use "Easy Attendance" to output CSV with members and time period.
 
 == Description ==
 
-This plugin provides custom post types in a simplified format.
+"Easy Attendance" provides custom post types in a simplified format.
 It is possible to output registered custom post types in CSV format.
-You can use this plugin to output CSV with members and time period.
+You can use "Easy Attendance" to output CSV with members and time period.
 
 == Installation ==
 1. Upload All files to the `/wp-content/plugins/` directory.
