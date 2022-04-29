@@ -3,7 +3,7 @@
 class Tegos_Test_Post {
 
 	private static $initiated = false;
-    
+
     public static function init() {
     	if ( ! self::$initiated ) {
     		self::init_hooks();
@@ -26,20 +26,21 @@ class Tegos_Test_Post {
             TEGOS::POST_TYPES,                // 投稿タイプ名の定義
             [
                 'labels' => [
-                    'name' => __( 'TEGOS勤怠' , 'easy-attendance'),             // 管理画面上で表示する投稿タイプ名
+                    'name' => __( 'Easy Attendance' , 'easy-attendance'),             // 管理画面上で表示する投稿タイプ名
                     'singular_name' => TEGOS::POST_TYPE,     // カスタム投稿の識別名
-                    'menu_name' => __( 'てご勤怠' , 'easy-attendance'),     // メニュー名のテキスト
-                    'all_items' => __( '勤怠一覧' , 'easy-attendance'),     // サブメニュー名のテキスト
-                    'add_new' => __( '勤怠追加' , 'easy-attendance'),    // 「新規追加」のテキスト
-                    'add_new_item' => __( '勤怠を追加' , 'easy-attendance'), // 「新規〜を追加」のテキスト
-                    'edit_item' => __( '勤怠を編集' , 'easy-attendance'), // 「〜を編集」のテキスト
+                    'menu_name' => __( 'Easy Attendance' , 'easy-attendance'),     // メニュー名のテキスト
+                    'all_items' => __( 'Attendance List' , 'easy-attendance'),     // サブメニュー名のテキスト
+                    'add_new' => __( 'Add Attendance' , 'easy-attendance'),    // 「新規追加」のテキスト
+                    'add_new_item' => __( 'Add Attendance' , 'easy-attendance'), // 「新規〜を追加」のテキスト
+                    'edit_item' => __( 'Edit Attendance' , 'easy-attendance'), // 「〜を編集」のテキスト
                 ],
                 'public'        => true,    // カスタム投稿タイプの表示(trueにする)
                 'has_archive'   => true,    // カスタム投稿一覧(true:表示/false:非表示)
                 'menu_position' => 5,       // 管理画面上での表示位置
-                'show_in_rest'  => true, 
+                'show_in_rest'  => true,
                 'rewrite' => array('with_front' => false),
                 'supports' => false,
+                'menu_icon' => 'dashicons-calendar',
                 // 'supports' => [
                 //     'title' //（タイトル）
                 //     // 'editor' //（内容の編集）
@@ -67,14 +68,14 @@ class Tegos_Test_Post {
             $__file_name  = 'single-tegos.php';
             $__template = $__template_dir . $__file_name;
         }
-        
+
         return $__template;
 
     }
     function create_custom_fields(){
         add_meta_box(
             TEGOS::POST_TYPE.'_meta_box',            //編集画面セクションID
-            __( 'TEGOSきんたい' , 'easy-attendance'), //編集画面セクションのタイトル
+            __( 'Easy Attendance' , 'easy-attendance'), //編集画面セクションのタイトル
             array( __CLASS__, 'insert_custom_fields' ), //編集画面セクションにHTML出力する関数
             TEGOS::POST_TYPES,                //投稿タイプ名
             'normal' //編集画面セクションが表示される部分
@@ -84,13 +85,13 @@ class Tegos_Test_Post {
     function create_sub_menu(){
         add_submenu_page(
             'edit.php?post_type='.TEGOS::POST_TYPES,    // 親メニュー
-            __( '勤怠CSV出力' , 'easy-attendance'),          // ページタイトル
-            __( 'CSV出力' , 'easy-attendance'),      // サブメニューの管理画面上での名前
+            __( 'Export Attendance CSV' , 'easy-attendance'),          // ページタイトル
+            __( 'Export Attendance CSV' , 'easy-attendance'),      // サブメニューの管理画面上での名前
             'manage_options',   // メニュー表示する際に必要な権限
             'tegosoutputcsv',
             array( __CLASS__, 'view_outputcsv' ),
             // TEGOS_TEST__PLUGIN_URL.'views/outputcsv.php',
-    ); 
+    );
     }
     public static function view_outputcsv() {
         global $tegos;
@@ -144,7 +145,7 @@ class Tegos_Test_Post {
         foreach ($tegos->colums as $colom) {
             self::write_post_meta($post_id, $colom);
         }
-        
+
     }
 
     //タイトルの自動生成
@@ -160,7 +161,7 @@ class Tegos_Test_Post {
 
         return $title;
     }
-  
+
     private static function echoInputText($name,$size=20,$required=false,$value="",$type="type", $title=""){
         Global $post;
         $_option_name = TEGOS::OPTION_NAME.$name;
@@ -199,11 +200,7 @@ class Tegos_Test_Post {
             $_title = $title;
         }
         $_postmeta_name = TEGOS::POSTMETA_NAME.$name;
-        // if(empty($post->post_title)){
-        //     $_value = $value;
-        // }else{
-        //     $_value = get_post_meta($post->ID, $_postmeta_name, true);
-        // }
+
         echo sprintf(
             '<label for="%s">%s</label>',
             $_postmeta_name,
@@ -298,7 +295,7 @@ class Tegos_Test_Post {
             header( 'Content-Type: text/csv' );
             header( 'Content-Disposition: attachment;filename='.$filename);
             $fp = fopen('php://output', 'w');
-    
+
             global $wpdb;
             global $tegos;
             // $query = "SELECT * FROM $wpdb->posts WHERE post_type = %s";
