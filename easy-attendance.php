@@ -4,7 +4,7 @@ Plugin Name: TEGOS Easy Attendance Plugin
 Plugin URI: https://www.tegos.co.jp/
 Description: Product registration
 Version: 0.0.1
-Author: Tegos
+Author: TEGOS.K.K
 Author URI: https://www.tegos.co.jp/
 License: GPL2
 Text Domain: easy-attendance
@@ -55,11 +55,11 @@ if ( ! class_exists( 'TEGOS' ) ) :
                 'memo',
             );
             $this->namelist = array(
-                __('社員AA', 'easy-attendance'),
-                __('社員BB', 'easy-attendance'),
-                __('社員CC', 'easy-attendance'),
-                __('社員DD', 'easy-attendance'),
-                __('社員EE', 'easy-attendance'),
+                __('Memeber AA', 'easy-attendance'),
+                __('Memeber BB', 'easy-attendance'),
+                __('Memeber CC', 'easy-attendance'),
+                __('Memeber DD', 'easy-attendance'),
+                __('Memeber EE', 'easy-attendance'),
             );
         }
     }
@@ -80,7 +80,7 @@ if ( ! class_exists( 'TEGOS' ) ) :
 endif; // class_exists check
 
 define( 'TEGOS_TEST__VERSION', '0.0.1' );
-define( 'TEGOS_TEST__MINIMUM_WP_VERSION', '4.0' );
+define( 'TEGOS_TEST__MINIMUM_WP_VERSION', '5.7' );
 define( 'TEGOS_TEST__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TEGOS_TEST__PLUGIN_URL', plugins_url( '/', __FILE__ ) );
 
