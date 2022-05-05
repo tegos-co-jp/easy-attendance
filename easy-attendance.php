@@ -2,8 +2,8 @@
 /*
 Plugin Name: Easy Attendance
 Plugin URI: https://www.tegos.co.jp/easy-attendance-plugin/
-Description: Product registration
-Version: 0.0.1
+Description: "Easy Attendance" provides custom post types in a simplified format.It is possible to output registered custom post types in CSV format.
+Version: 1.0.0
 Author: TEGOS.K.K
 Author URI: https://www.tegos.co.jp/aboutus/
 License: GPL2
@@ -29,9 +29,9 @@ Domain Path: /languages
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! class_exists( 'TEGOS' ) ) :
+if ( ! class_exists( 'TGSEA' ) ) :
 
-    class TEGOS {
+    class TGSEA {
 
         public const POST_TYPE = "tegos_time";
         public const POST_TYPES = "tegos_times";
@@ -68,7 +68,7 @@ if ( ! class_exists( 'TEGOS' ) ) :
 
         // Instantiate only once.
         if ( ! isset( $tegos ) ) {
-            $tegos = new TEGOS();
+            $tegos = new TGSEA();
             $tegos->initialize();
         }
         return $tegos;
@@ -79,7 +79,7 @@ if ( ! class_exists( 'TEGOS' ) ) :
 
 endif; // class_exists check
 
-define( 'TEGOS_TEST__VERSION', '0.0.1' );
+define( 'TEGOS_TEST__VERSION', '1.0.0' );
 define( 'TEGOS_TEST__MINIMUM_WP_VERSION', '5.7' );
 define( 'TEGOS_TEST__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TEGOS_TEST__PLUGIN_URL', plugins_url( '/', __FILE__ ) );

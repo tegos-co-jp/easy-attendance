@@ -23,11 +23,11 @@ class Tegos_Test_Post {
 
     public static function create_post_type( ) {
         register_post_type(
-            TEGOS::POST_TYPES,                // 投稿タイプ名の定義
+            TGSEA::POST_TYPES,                // 投稿タイプ名の定義
             [
                 'labels' => [
                     'name' => __( 'Easy Attendance' , 'easy-attendance'),             // 管理画面上で表示する投稿タイプ名
-                    'singular_name' => TEGOS::POST_TYPE,     // カスタム投稿の識別名
+                    'singular_name' => TGSEA::POST_TYPE,     // カスタム投稿の識別名
                     'menu_name' => __( 'Easy Attendance' , 'easy-attendance'),     // メニュー名のテキスト
                     'all_items' => __( 'Attendance List' , 'easy-attendance'),     // サブメニュー名のテキスト
                     'add_new' => __( 'Add Attendance' , 'easy-attendance'),    // 「新規追加」のテキスト
@@ -59,7 +59,7 @@ class Tegos_Test_Post {
     }
 
     public static function template_loader( $__template ) {
-        $__posttype = TEGOS::POST_TYPES;
+        $__posttype = TGSEA::POST_TYPES;
 
         // テンプレートファイルの場所
         $__template_dir = TEGOS_TEST__PLUGIN_DIR . 'templates/';
@@ -74,17 +74,17 @@ class Tegos_Test_Post {
     }
     function create_custom_fields(){
         add_meta_box(
-            TEGOS::POST_TYPE.'_meta_box',            //編集画面セクションID
+            TGSEA::POST_TYPE.'_meta_box',            //編集画面セクションID
             __( 'Easy Attendance' , 'easy-attendance'), //編集画面セクションのタイトル
             array( __CLASS__, 'insert_custom_fields' ), //編集画面セクションにHTML出力する関数
-            TEGOS::POST_TYPES,                //投稿タイプ名
+            TGSEA::POST_TYPES,                //投稿タイプ名
             'normal' //編集画面セクションが表示される部分
         );
     }
 
     function create_sub_menu(){
         add_submenu_page(
-            'edit.php?post_type='.TEGOS::POST_TYPES,    // 親メニュー
+            'edit.php?post_type='.TGSEA::POST_TYPES,    // 親メニュー
             __( 'Export Attendance CSV' , 'easy-attendance'),          // ページタイトル
             __( 'Export Attendance CSV' , 'easy-attendance'),      // サブメニューの管理画面上での名前
             'manage_options',   // メニュー表示する際に必要な権限
@@ -150,11 +150,11 @@ class Tegos_Test_Post {
 
     //タイトルの自動生成
     function title_save_pre($title) {
-        if ( $_POST['post_type'] == TEGOS::POST_TYPES){ #投稿タイプの確認
-            $_postmeta_name = TEGOS::POSTMETA_NAME.TEGOS::POSTMETA_COLUMN__NAME;
-            $_postmeta_date = TEGOS::POSTMETA_NAME.TEGOS::POSTMETA_COLUMN__DATE;
-            $_postmeta_time_start = TEGOS::POSTMETA_NAME.TEGOS::POSTMETA_COLUMN__TIME_START;
-            $_postmeta_time_end = TEGOS::POSTMETA_NAME.TEGOS::POSTMETA_COLUMN__TIME_END;
+        if ( $_POST['post_type'] == TGSEA::POST_TYPES){ #投稿タイプの確認
+            $_postmeta_name = TGSEA::POSTMETA_NAME.TGSEA::POSTMETA_COLUMN__NAME;
+            $_postmeta_date = TGSEA::POSTMETA_NAME.TGSEA::POSTMETA_COLUMN__DATE;
+            $_postmeta_time_start = TGSEA::POSTMETA_NAME.TGSEA::POSTMETA_COLUMN__TIME_START;
+            $_postmeta_time_end = TGSEA::POSTMETA_NAME.TGSEA::POSTMETA_COLUMN__TIME_END;
             //タイトルになる文字列を生成
             $title = $_POST[$_postmeta_name].' '.$_POST[$_postmeta_date].' '.$_POST[$_postmeta_time_start].'-'.$_POST[$_postmeta_time_end];
         }
@@ -164,13 +164,13 @@ class Tegos_Test_Post {
 
     private static function echoInputText($name,$size=20,$required=false,$value="",$type="type", $title=""){
         Global $post;
-        $_option_name = TEGOS::OPTION_NAME.$name;
+        $_option_name = TGSEA::OPTION_NAME.$name;
         if(empty($title)){
             $_title = get_option($_option_name,$name);
         }else{
             $_title = $title;
         }
-        $_postmeta_name = TEGOS::POSTMETA_NAME.$name;
+        $_postmeta_name = TGSEA::POSTMETA_NAME.$name;
         if(empty($post->post_title)){
             $_value = $value;
         }else{
@@ -184,44 +184,44 @@ class Tegos_Test_Post {
         echo sprintf(
             '<input type="%s" id="%s" name="%s" value="%s" size="%d" %s>',
             $type,
-            $_postmeta_name,
-            $_postmeta_name,
-            $_value,
-            $size,
+            esc_html($_postmeta_name),
+            esc_html($_postmeta_name),
+            esc_html($_value),
+            esc_html($size),
             ($required) ? 'required' : '',
         );
     }
     private static function echoInputText_range($name,$size=20,$required=false,$valueS="",$valueE="",$type="type", $title=""){
         Global $post;
-        $_option_name = TEGOS::OPTION_NAME.$name;
+        $_option_name = TGSEA::OPTION_NAME.$name;
         if(empty($title)){
             $_title = get_option($_option_name,$name);
         }else{
             $_title = $title;
         }
-        $_postmeta_name = TEGOS::POSTMETA_NAME.$name;
+        $_postmeta_name = TGSEA::POSTMETA_NAME.$name;
 
         echo sprintf(
             '<label for="%s">%s</label>',
-            $_postmeta_name,
-            $_title,
+            esc_html($_postmeta_name),
+            esc_html($_title),
         );
         echo sprintf(
             '<input type="%s" id="%s" name="%s_start" value="%s" size="%d" %s>',
-            $type,
-            $_postmeta_name,
-            $_postmeta_name,
-            $valueS,
-            $size,
+            esc_html($type),
+            esc_html($_postmeta_name),
+            esc_html($_postmeta_name),
+            esc_html($valueS),
+            esc_html($size),
             ($required) ? 'required' : '',
         );
         echo sprintf(
             '&nbsp;-&nbsp;<input type="%s" id="%s" name="%s_end" value="%s" size="%d" %s>',
             $type,
-            $_postmeta_name,
-            $_postmeta_name,
-            $valueE,
-            $size,
+            esc_html($_postmeta_name),
+            esc_html($_postmeta_name),
+            esc_html($valueE),
+            esc_html($size),
             ($required) ? 'required' : '',
         );
     }
@@ -229,9 +229,9 @@ class Tegos_Test_Post {
     private static function echoInputTextArea($name,$rows=10,$cols=60){
         Global $post;
         $post_id = $post->ID;
-        $_option_name = TEGOS::OPTION_NAME.$name;
+        $_option_name = TGSEA::OPTION_NAME.$name;
         $_title = get_option($_option_name,$name);
-        $_postmeta_name = TEGOS::POSTMETA_NAME.$name;
+        $_postmeta_name = TGSEA::POSTMETA_NAME.$name;
         $_value = get_post_meta($post_id, $_postmeta_name, true);
         echo sprintf(
             '<label for="%s">%s</label>',
@@ -251,9 +251,9 @@ class Tegos_Test_Post {
     private static function echoInputSelect($name,$optionlist,$required=false){
         Global $post;
         $post_id = $post->ID;
-        $_option_name = TEGOS::OPTION_NAME.$name;
+        $_option_name = TGSEA::OPTION_NAME.$name;
         $_title = get_option($_option_name,$name);
-        $_postmeta_name = TEGOS::POSTMETA_NAME.$name;
+        $_postmeta_name = TGSEA::POSTMETA_NAME.$name;
         $_value = get_post_meta($post_id, $_postmeta_name, true);
         echo sprintf(
             '<label for="%s">%s</label>',
@@ -280,7 +280,7 @@ class Tegos_Test_Post {
     }
 
     private static function write_post_meta($post_id, $name){
-        $_postmeta_name = TEGOS::POSTMETA_NAME.$name;
+        $_postmeta_name = TGSEA::POSTMETA_NAME.$name;
         // ユーザーの入力を無害化する
         // $my_data = sanitize_text_field( $_POST[$_postmeta_name] );
         $my_data =  $_POST[$_postmeta_name] ;
@@ -291,7 +291,7 @@ class Tegos_Test_Post {
     function tegos_exportcsvdata() {
         if ( isset( $_GET['download'] ) ) {
             error_log(print_r($_GET,true));
-            $filename = TEGOS::POST_TYPES . '_' . date('YmdHms') . '.csv';
+            $filename = TGSEA::POST_TYPES . '_' . date('YmdHms') . '.csv';
             header( 'Content-Type: text/csv' );
             header( 'Content-Disposition: attachment;filename='.$filename);
             $fp = fopen('php://output', 'w');
@@ -299,7 +299,7 @@ class Tegos_Test_Post {
             global $wpdb;
             global $tegos;
             // $query = "SELECT * FROM $wpdb->posts WHERE post_type = %s";
-            // $results = $wpdb->get_results( $wpdb->prepare( $query, TEGOS::POST_TYPES ) );
+            // $results = $wpdb->get_results( $wpdb->prepare( $query, TGSEA::POST_TYPES ) );
             $query  = " ";
             $query .= " " . "SELECT t0.ID";
             $query .= " " . "FROM $wpdb->posts t0";
@@ -312,25 +312,25 @@ class Tegos_Test_Post {
             $query .= " " . "WHERE t0.post_type = %s";
             $query .= " " . "AND t2.meta_value >= %s";
             $query .= " " . "AND t2.meta_value <= %s";
-            if(!empty($_GET[TEGOS::POSTMETA_NAME.TEGOS::POSTMETA_COLUMN__NAME])){
+            if(!empty($_GET[TGSEA::POSTMETA_NAME.TGSEA::POSTMETA_COLUMN__NAME])){
                 $query .= " " . "AND t1.meta_value = %s";
             }
             $query .= " " . "ORDER BY t1.meta_value ASC, t2.meta_value ASC";
             $results = $wpdb->get_col(
                 $wpdb->prepare(
                     $query,
-                    TEGOS::POSTMETA_NAME.TEGOS::POSTMETA_COLUMN__NAME,
-                    TEGOS::POSTMETA_NAME.TEGOS::POSTMETA_COLUMN__DATE,
-                    TEGOS::POST_TYPES,
-                    $_GET[TEGOS::POSTMETA_NAME.TEGOS::POSTMETA_COLUMN__DATE.'_start'],
-                    $_GET[TEGOS::POSTMETA_NAME.TEGOS::POSTMETA_COLUMN__DATE.'_end'],
-                    $_GET[TEGOS::POSTMETA_NAME.TEGOS::POSTMETA_COLUMN__NAME],
+                    TGSEA::POSTMETA_NAME.TGSEA::POSTMETA_COLUMN__NAME,
+                    TGSEA::POSTMETA_NAME.TGSEA::POSTMETA_COLUMN__DATE,
+                    TGSEA::POST_TYPES,
+                    $_GET[TGSEA::POSTMETA_NAME.TGSEA::POSTMETA_COLUMN__DATE.'_start'],
+                    $_GET[TGSEA::POSTMETA_NAME.TGSEA::POSTMETA_COLUMN__DATE.'_end'],
+                    $_GET[TGSEA::POSTMETA_NAME.TGSEA::POSTMETA_COLUMN__NAME],
                 )
             );
             $csv = array();
             $csv[] = 'ID';
             foreach ($tegos->colums as $colom) {
-                $csv[] = get_option( TEGOS::OPTION_NAME.$colom, $colom );
+                $csv[] = get_option( TGSEA::OPTION_NAME.$colom, $colom );
             }
             fputcsv( $fp, $csv );
             foreach($results as $ID) {
@@ -338,7 +338,7 @@ class Tegos_Test_Post {
                 $csv = array();
                 $csv[] = $ID;
                 foreach ($tegos->colums as $colom) {
-                    $csv[] = $meta_values[TEGOS::POSTMETA_NAME.$colom][0];
+                    $csv[] = $meta_values[TGSEA::POSTMETA_NAME.$colom][0];
                 }
                 fputcsv( $fp, $csv );
             }

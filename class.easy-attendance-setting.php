@@ -42,13 +42,13 @@ class Tegos_Test_Setting {
 	}
 
 	public static function view_menu() {
-		$__option = TEGOS::OPTION_NAME;
+		$__option = TGSEA::OPTION_NAME;
 		$__file = TEGOS_TEST__PLUGIN_DIR . 'views/'. 'setting.php';
 		include( $__file );
 	}
 
 	function register_mysettings() {
-		$__option = TEGOS::OPTION_NAME;
+		$__option = TGSEA::OPTION_NAME;
 		global $tegos;
 		foreach ($tegos->colums as $colom) {
 			register_setting($__option, $__option.$colom);
@@ -56,7 +56,7 @@ class Tegos_Test_Setting {
 	}
 
     private static function echoInputText($name){
-        $__option_name = TEGOS::OPTION_NAME.$name;
+        $__option_name = TGSEA::OPTION_NAME.$name;
         echo sprintf(
             '<input type="text" id="%s" name="%s" value="%s">',
             $__option_name,
