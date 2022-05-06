@@ -13,7 +13,7 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
 <p><?php self::echoInputText_range( 'date', 10, true ,date('Y-m-01'), date('Y-m-t'), 'date') ?></p>
 
 
-<?php submit_button( __( 'Download Export CSV File', 'easy-attendance' ), '' ,'tegos_exportcsvdata' ); ?>
+<?php submit_button( __( 'Download Export CSV File', 'easy-attendance' ), '' ,'tgsea_exportcsvdata' ); ?>
 </form>
 </div>
 

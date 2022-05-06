@@ -33,10 +33,10 @@ if ( ! class_exists( 'TGSEA' ) ) :
 
     class TGSEA {
 
-        public const POST_TYPE = "tegos_time";
-        public const POST_TYPES = "tegos_times";
-        public const POSTMETA_NAME = "tegos_time__";
-        public const OPTION_NAME = 'tegos_time_option__';
+        public const POST_TYPE = "tgsea_time";
+        public const POST_TYPES = "tgsea_times";
+        public const POSTMETA_NAME = "tgsea_time__";
+        public const OPTION_NAME = 'tgsea_time_option__';
         public const POSTMETA_COLUMN__NAME = "name";
         public const POSTMETA_COLUMN__DATE = "date";
         public const POSTMETA_COLUMN__TIME_START = "time_start";
@@ -63,41 +63,41 @@ if ( ! class_exists( 'TGSEA' ) ) :
             );
         }
     }
-    function tegos() {
-        global $tegos;
+    function tgsea() {
+        global $tgsea;
 
         // Instantiate only once.
-        if ( ! isset( $tegos ) ) {
-            $tegos = new TGSEA();
-            $tegos->initialize();
+        if ( ! isset( $tgsea ) ) {
+            $tgsea = new TgsEa();
+            $tgsea->initialize();
         }
-        return $tegos;
+        return $tgsea;
     }
 
     // Instantiate.
-    $tegos = tegos();
+    $tgsea = tgsea();
 
 endif; // class_exists check
 
-define( 'TEGOS_TEST__VERSION', '1.0.0' );
-define( 'TEGOS_TEST__MINIMUM_WP_VERSION', '5.7' );
-define( 'TEGOS_TEST__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'TEGOS_TEST__PLUGIN_URL', plugins_url( '/', __FILE__ ) );
+define( 'TGSEA__VERSION', '1.0.0' );
+define( 'TGSEA__MINIMUM_WP_VERSION', '5.7' );
+define( 'TGSEA__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'TGSEA__PLUGIN_URL', plugins_url( '/', __FILE__ ) );
 
 
-register_activation_hook( __FILE__, array( 'Tegos_Test', 'plugin_activation' ) );
-register_deactivation_hook( __FILE__, array( 'Tegos_Test', 'plugin_deactivation' ) );
+register_activation_hook( __FILE__, array( 'TgsEa_plugin', 'plugin_activation' ) );
+register_deactivation_hook( __FILE__, array( 'TgsEa_plugin', 'plugin_deactivation' ) );
 
-require_once( TEGOS_TEST__PLUGIN_DIR . 'class.easy-attendance.php' );
-add_action( 'init', array( 'Tegos_Test', 'init' ) );
-require_once( TEGOS_TEST__PLUGIN_DIR . 'class.easy-attendance-post.php' );
-add_action( 'init', array( 'Tegos_Test_Post', 'create_post_type' ) );
-add_action( 'init', array( 'Tegos_Test_Post', 'tegos_exportcsvdata' ) );
-add_action( 'init', array( 'Tegos_Test_Post', 'init' ) );
+require_once( TGSEA__PLUGIN_DIR . 'class.easy-attendance.php' );
+//add_action( 'init', array( 'TgsEa_plugin', 'init' ) );
+require_once( TGSEA__PLUGIN_DIR . 'class.easy-attendance-post.php' );
+add_action( 'init', array( 'TgsEa_Post', 'create_post_type' ) );
+add_action( 'init', array( 'TgsEa_Post', 'tgsea_exportcsvdata' ) );
+add_action( 'init', array( 'TgsEa_Post', 'init' ) );
 
 if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
-    require_once( TEGOS_TEST__PLUGIN_DIR . 'class.easy-attendance-setting.php' );
-	add_action( 'init', array( 'Tegos_Test_Setting', 'init' ) );
+    require_once( TGSEA__PLUGIN_DIR . 'class.easy-attendance-setting.php' );
+	add_action( 'init', array( 'TgsEa_Setting', 'init' ) );
 }
 
 function easy_attendance_plugin_override() {

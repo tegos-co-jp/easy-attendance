@@ -1,6 +1,6 @@
 <?php
 
-class Tegos_Test {
+class TgsEa_plugin {
 
     /**
      * Attached to activate_{ plugin_basename( __FILES__ ) } by register_activation_hook()

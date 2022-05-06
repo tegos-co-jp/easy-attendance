@@ -1,6 +1,6 @@
 <?php
 
-class Tegos_Test_Post {
+class TgsEa_Post {
 
 	private static $initiated = false;
 
@@ -62,10 +62,10 @@ class Tegos_Test_Post {
         $__posttype = TGSEA::POST_TYPES;
 
         // テンプレートファイルの場所
-        $__template_dir = TEGOS_TEST__PLUGIN_DIR . 'templates/';
+        $__template_dir = TGSEA__PLUGIN_DIR . 'templates/';
 
         if ( is_singular( $__posttype ) ) {
-            $__file_name  = 'single-tegos.php';
+            $__file_name  = 'single-tgsea.php';
             $__template = $__template_dir . $__file_name;
         }
 
@@ -90,24 +90,24 @@ class Tegos_Test_Post {
             'manage_options',   // メニュー表示する際に必要な権限
             'tegosoutputcsv',
             array( __CLASS__, 'view_outputcsv' ),
-            // TEGOS_TEST__PLUGIN_URL.'views/outputcsv.php',
+            // TGSEA__PLUGIN_URL.'views/outputcsv.php',
     );
     }
     public static function view_outputcsv() {
-        global $tegos;
-        $namelist = $tegos->namelist;
-        $__file = TEGOS_TEST__PLUGIN_DIR . 'views/'. 'outputcsv.php';
+        global $tgsea;
+        $namelist = $tgsea->namelist;
+        $__file = TGSEA__PLUGIN_DIR . 'views/'. 'outputcsv.php';
         include( $__file );
     }
 
     function insert_custom_fields( $post ){
         // nonceフィールドを追加して後でチェックする
         wp_nonce_field( 'myplugin_save_meta_box_data', 'myplugin_meta_box_nonce' );
-        global $tegos;
-        $namelist = $tegos->namelist;
+        global $tgsea;
+        $namelist = $tgsea->namelist;
 
         // カスタムデータ
-        $_file = TEGOS_TEST__PLUGIN_DIR . 'views/'. 'post.php';
+        $_file = TGSEA__PLUGIN_DIR . 'views/'. 'post.php';
         include( $_file );
 
     }
@@ -141,8 +141,8 @@ class Tegos_Test_Post {
         }
 
         /* 安全が確認できたのでデータを保存する */
-        global $tegos;
-        foreach ($tegos->colums as $colom) {
+        global $tgsea;
+        foreach ($tgsea->colums as $colom) {
             self::write_post_meta($post_id, $colom);
         }
 
@@ -288,7 +288,7 @@ class Tegos_Test_Post {
         update_post_meta( $post_id, $_postmeta_name, $my_data );
     }
 
-    function tegos_exportcsvdata() {
+    function tgsea_exportcsvdata() {
         if ( isset( $_GET['download'] ) ) {
             error_log(print_r($_GET,true));
             $filename = TGSEA::POST_TYPES . '_' . date('YmdHms') . '.csv';
@@ -297,7 +297,7 @@ class Tegos_Test_Post {
             $fp = fopen('php://output', 'w');
 
             global $wpdb;
-            global $tegos;
+            global $tgsea;
             // $query = "SELECT * FROM $wpdb->posts WHERE post_type = %s";
             // $results = $wpdb->get_results( $wpdb->prepare( $query, TGSEA::POST_TYPES ) );
             $query  = " ";
@@ -329,7 +329,7 @@ class Tegos_Test_Post {
             );
             $csv = array();
             $csv[] = 'ID';
-            foreach ($tegos->colums as $colom) {
+            foreach ($tgsea->colums as $colom) {
                 $csv[] = get_option( TGSEA::OPTION_NAME.$colom, $colom );
             }
             fputcsv( $fp, $csv );
@@ -337,7 +337,7 @@ class Tegos_Test_Post {
                 $meta_values = get_post_meta($ID);
                 $csv = array();
                 $csv[] = $ID;
-                foreach ($tegos->colums as $colom) {
+                foreach ($tgsea->colums as $colom) {
                     $csv[] = $meta_values[TGSEA::POSTMETA_NAME.$colom][0];
                 }
                 fputcsv( $fp, $csv );

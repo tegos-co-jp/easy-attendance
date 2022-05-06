@@ -1,8 +1,10 @@
 <?php
 
-class Tegos_Test_Setting {
+class TgsEa_Setting {
 
 	private static $initiated = false;
+	private const MENU_SLUG = "tgsea";
+
 
 	public static function init() {
 		if ( ! self::$initiated ) {
@@ -27,30 +29,30 @@ class Tegos_Test_Setting {
 			__( 'Easy Attendance Settings' , 'tegos-easy-attendance'),
 			__( 'Easy Attendance Settings ' , 'easy-attendance'),
 			'manage_options',
-			'tegossetting',
+			self::MENU_SLUG,
 			array( __CLASS__, 'view_menu' ),
 		);
 		//add_menu_pageで追加したメニューのサブメニュー一覧のタイトルを変更
 		add_submenu_page(
-			"tegossetting",
+			self::MENU_SLUG,
 			__( 'Easy Attendance Settings' , 'easy-attendance'),
 			__( 'Title Settings' , 'easy-attendance'),
 			'manage_options',
-			'tegossetting',
+			self::MENU_SLUG,
 			array( __CLASS__, 'view_menu' ),
 		);
 	}
 
 	public static function view_menu() {
 		$__option = TGSEA::OPTION_NAME;
-		$__file = TEGOS_TEST__PLUGIN_DIR . 'views/'. 'setting.php';
+		$__file = TGSEA__PLUGIN_DIR . 'views/'. 'setting.php';
 		include( $__file );
 	}
 
 	function register_mysettings() {
 		$__option = TGSEA::OPTION_NAME;
-		global $tegos;
-		foreach ($tegos->colums as $colom) {
+		global $tgsea;
+		foreach ($tgsea->colums as $colom) {
 			register_setting($__option, $__option.$colom);
 		}
 	}
