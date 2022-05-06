@@ -7,7 +7,7 @@ class TgsEa_plugin {
      * @static
      */
     public static function plugin_activation() {
-        add_option( 'Activated_Tegos_Test', true );
+        add_option( 'Activated_EasyAttendance', true );
     }
 
     /**
@@ -15,7 +15,7 @@ class TgsEa_plugin {
      * @static
      */
     public static function plugin_deactivation( ) {
-        delete_option( 'Activated_Tegos_Test' );
+        delete_option( 'Activated_EasyAttendance' );
     }
 
 }

@@ -49,7 +49,7 @@ class TgsEa_Setting {
 		include( $__file );
 	}
 
-	function register_mysettings() {
+    public static function register_mysettings() {
 		$__option = TGSEA::OPTION_NAME;
 		global $tgsea;
 		foreach ($tgsea->colums as $colom) {
