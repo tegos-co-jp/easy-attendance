@@ -169,7 +169,7 @@ class TgsEa_Post
             $_postmeta_time_start = TGSEA::POSTMETA_NAME . TGSEA::POSTMETA_COLUMN__TIME_START;
             $_postmeta_time_end = TGSEA::POSTMETA_NAME . TGSEA::POSTMETA_COLUMN__TIME_END;
             //タイトルになる文字列を生成
-            $title = $_POST[$_postmeta_name] . ' ' . $_POST[$_postmeta_date] . ' ' . $_POST[$_postmeta_time_start] . '-' . $_POST[$_postmeta_time_end];
+            $title = esc_html($_POST[$_postmeta_name]) . ' ' . esc_html($_POST[$_postmeta_date]) . ' ' . esc_html($_POST[$_postmeta_time_start]) . '-' . esc_html($_POST[$_postmeta_time_end]);
         }
 
         return $title;

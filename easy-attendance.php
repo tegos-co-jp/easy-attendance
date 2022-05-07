@@ -100,10 +100,8 @@ if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
 	add_action( 'init', array( 'TgsEa_Setting', 'init' ) );
 }
 
-function easy_attendance_plugin_override() {
-
-    define('PLUGIN_NAME', 'easy-attendance');
-    load_plugin_textdomain(PLUGIN_NAME,false,'wp-content/plugins/'.PLUGIN_NAME.'/languages');
+function tgsea_plugin_override() {
+    load_plugin_textdomain(PLUGIN_NAME,false,'wp-content/plugins/easy-attendance/languages');
 }
-add_action( 'plugins_loaded', 'easy_attendance_plugin_override' );
+add_action( 'plugins_loaded', 'tgsea_plugin_override' );
 
