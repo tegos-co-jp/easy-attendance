@@ -131,14 +131,19 @@ class TgsEa_Post
         * save_postアクションは他の時にも起動する場合があるので、
         * 先ほど作った編集フォームのから適切な認証とともに送られてきたデータかどうかを検証する必要がある。
         */
+        $e = new WP_Error();
 
         // nonceがセットされているかどうか確認
         if (!isset($_POST['myplugin_meta_box_nonce'])) {
+            $e->add('error',__('wp_nonce not set','easy-attendance'));
+            set_transient('tgsea-admin-errors',$e->get_error_messages(),10);
             return;
         }
 
         // nonceが正しいかどうか検証
         if (!wp_verify_nonce($_POST['myplugin_meta_box_nonce'], 'myplugin_save_meta_box_data')) {
+            $e->add('error',__('wp_nonce error occerd','easy-attendance'));
+            set_transient('tgsea-admin-errors',$e->get_error_messages(),10);
             return;
         }
 
@@ -149,12 +154,15 @@ class TgsEa_Post
 
         // ユーザー権限の確認
         if (!current_user_can('edit_post', $post_id)) {
+            $e->add('error',__('you dont have permitting','easy-attendance'));
+            set_transient('tgsea-admin-errors',$e->get_error_messages(),10);
             return;
         }
 
         /* 安全が確認できたのでデータを保存する */
         global $tgsea;
         foreach ($tgsea->colums as $colom) {
+            //if(){}
             self::write_post_meta($post_id, $colom);
         }
 
@@ -169,7 +177,8 @@ class TgsEa_Post
             $_postmeta_time_start = TGSEA::POSTMETA_NAME . TGSEA::POSTMETA_COLUMN__TIME_START;
             $_postmeta_time_end = TGSEA::POSTMETA_NAME . TGSEA::POSTMETA_COLUMN__TIME_END;
             //タイトルになる文字列を生成
-            $title = esc_html($_POST[$_postmeta_name]) . ' ' . esc_html($_POST[$_postmeta_date]) . ' ' . esc_html($_POST[$_postmeta_time_start]) . '-' . esc_html($_POST[$_postmeta_time_end]);
+            $concat_title = $_POST[$_postmeta_name] . ' ' . $_POST[$_postmeta_date] . ' ' . $_POST[$_postmeta_time_start] . '-' . $_POST[$_postmeta_time_end];
+            $title = esc_html($concat_title);
         }
 
         return $title;
@@ -261,7 +270,7 @@ class TgsEa_Post
             esc_html($_postmeta_name),
             esc_html($rows),
             esc_html($cols),
-            esc_html($_value),
+            wp_kses($_value),
         );
     }
 
@@ -289,7 +298,7 @@ class TgsEa_Post
                 '<option value="%s" %s >%s</option>',
                 esc_html($item),
                 ($item == $_value) ? 'selected' : '',
-                $item,
+                esc_html($item),
             );
         }
         echo sprintf(
@@ -302,7 +311,7 @@ class TgsEa_Post
         $_postmeta_name = TGSEA::POSTMETA_NAME . $name;
         // ユーザーの入力を無害化する
         // $my_data = sanitize_text_field( $_POST[$_postmeta_name] );
-        $my_data = $_POST[$_postmeta_name];
+        $my_data = sanitize_text_field($_POST[$_postmeta_name]) ;
         // フィールドを更新
         update_post_meta($post_id, $_postmeta_name, $my_data);
     }
@@ -350,7 +359,7 @@ class TgsEa_Post
             $csv = array();
             $csv[] = 'ID';
             foreach ($tgsea->colums as $colom) {
-                $csv[] = get_option(TGSEA::OPTION_NAME . $colom, $colom);
+                $csv[] = wp_kses(get_option(TGSEA::OPTION_NAME . $colom, $colom));
             }
             fputcsv($fp, $csv);
             foreach ($results as $ID) {
@@ -358,7 +367,7 @@ class TgsEa_Post
                 $csv = array();
                 $csv[] = $ID;
                 foreach ($tgsea->colums as $colom) {
-                    $csv[] = $meta_values[TGSEA::POSTMETA_NAME . $colom][0];
+                    $csv[] = wp_kses($meta_values[TGSEA::POSTMETA_NAME . $colom][0]);
                 }
                 fputcsv($fp, $csv);
             }
