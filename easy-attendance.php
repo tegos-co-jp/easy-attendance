@@ -104,4 +104,3 @@ function tgsea_plugin_override() {
     load_plugin_textdomain(PLUGIN_NAME,false,'wp-content/plugins/easy-attendance/languages');
 }
 add_action( 'plugins_loaded', 'tgsea_plugin_override' );
-

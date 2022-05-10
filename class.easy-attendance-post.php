@@ -270,7 +270,7 @@ class TgsEa_Post
             esc_html($_postmeta_name),
             esc_html($rows),
             esc_html($cols),
-            wp_kses($_value),
+            wp_kses_post($_value),
         );
     }
 
@@ -359,7 +359,7 @@ class TgsEa_Post
             $csv = array();
             $csv[] = 'ID';
             foreach ($tgsea->colums as $colom) {
-                $csv[] = wp_kses(get_option(TGSEA::OPTION_NAME . $colom, $colom));
+                $csv[] = get_option(TGSEA::OPTION_NAME . $colom, $colom);
             }
             fputcsv($fp, $csv);
             foreach ($results as $ID) {
@@ -367,7 +367,7 @@ class TgsEa_Post
                 $csv = array();
                 $csv[] = $ID;
                 foreach ($tgsea->colums as $colom) {
-                    $csv[] = wp_kses($meta_values[TGSEA::POSTMETA_NAME . $colom][0]);
+                    $csv[] = $meta_values[TGSEA::POSTMETA_NAME . $colom][0];
                 }
                 fputcsv($fp, $csv);
             }
