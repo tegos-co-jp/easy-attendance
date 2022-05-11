@@ -83,7 +83,7 @@ define( 'TGSEA__VERSION', '1.0.0' );
 define( 'TGSEA__MINIMUM_WP_VERSION', '5.7' );
 define( 'TGSEA__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TGSEA__PLUGIN_URL', plugins_url( '/', __FILE__ ) );
-
+define( 'TGSEA_DOMAIN','easy-attendance');
 
 register_activation_hook( __FILE__, array( 'TgsEa_plugin', 'plugin_activation' ) );
 register_deactivation_hook( __FILE__, array( 'TgsEa_plugin', 'plugin_deactivation' ) );
@@ -101,6 +101,6 @@ if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
 }
 
 function tgsea_plugin_override() {
-    load_plugin_textdomain(PLUGIN_NAME,false,'wp-content/plugins/easy-attendance/languages');
+    load_plugin_textdomain(TGSEA_DOMAIN,false,TGSEA__PLUGIN_DIR);
 }
 add_action( 'plugins_loaded', 'tgsea_plugin_override' );
