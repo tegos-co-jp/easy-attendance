@@ -177,7 +177,7 @@ class TgsEa_Post
             $_postmeta_time_start = TGSEA::POSTMETA_NAME . TGSEA::POSTMETA_COLUMN__TIME_START;
             $_postmeta_time_end = TGSEA::POSTMETA_NAME . TGSEA::POSTMETA_COLUMN__TIME_END;
             //タイトルになる文字列を生成
-            $title = esc_html($_POST[$_postmeta_name]) . ' ' . esc_html($_POST[$_postmeta_date]) . ' ' . esc_html($_POST[$_postmeta_time_start]) . '-' . esc_html($_POST[$_postmeta_time_end]);
+            $title = sanitize_text_field($_POST[$_postmeta_name]) . ' ' . sanitize_text_field($_POST[$_postmeta_date]) . ' ' . sanitize_text_field($_POST[$_postmeta_time_start]) . '-' . sanitize_text_field($_POST[$_postmeta_time_end]);
         }
 
         return $title;
@@ -200,16 +200,16 @@ class TgsEa_Post
         }
         echo sprintf(
             '<label for="%s">%s</label>',
-            esc_html($_postmeta_name),
-            esc_html($_title),
+            sanitize_text_field($_postmeta_name),
+            sanitize_text_field($_title),
         );
         echo sprintf(
             '<input type="%s" id="%s" name="%s" value="%s" size="%d" %s>',
             $type,
-            esc_html($_postmeta_name),
-            esc_html($_postmeta_name),
-            esc_html($_value),
-            esc_html($size),
+            sanitize_text_field($_postmeta_name),
+            sanitize_text_field($_postmeta_name),
+            sanitize_text_field($_value),
+            sanitize_text_field($size),
             ($required) ? 'required' : '',
         );
     }
@@ -227,25 +227,25 @@ class TgsEa_Post
 
         echo sprintf(
             '<label for="%s">%s</label>',
-            esc_html($_postmeta_name),
-            esc_html($_title),
+            sanitize_text_field($_postmeta_name),
+            sanitize_text_field($_title),
         );
         echo sprintf(
             '<input type="%s" id="%s" name="%s_start" value="%s" size="%d" %s>',
-            esc_html($type),
-            esc_html($_postmeta_name),
-            esc_html($_postmeta_name),
-            esc_html($valueS),
-            esc_html($size),
+            sanitize_text_field($type),
+            sanitize_text_field($_postmeta_name),
+            sanitize_text_field($_postmeta_name),
+            sanitize_text_field($valueS),
+            sanitize_text_field($size),
             ($required) ? 'required' : '',
         );
         echo sprintf(
             '&nbsp;-&nbsp;<input type="%s" id="%s" name="%s_end" value="%s" size="%d" %s>',
             $type,
-            esc_html($_postmeta_name),
-            esc_html($_postmeta_name),
-            esc_html($valueE),
-            esc_html($size),
+            sanitize_text_field($_postmeta_name),
+            sanitize_text_field($_postmeta_name),
+            sanitize_text_field($valueE),
+            sanitize_text_field($size),
             ($required) ? 'required' : '',
         );
     }
@@ -260,16 +260,16 @@ class TgsEa_Post
         $_value = get_post_meta($post_id, $_postmeta_name, true);
         echo sprintf(
             '<label for="%s">%s</label>',
-            esc_html($_postmeta_name),
-                esc_html($_title),
+            sanitize_text_field($_postmeta_name),
+            sanitize_text_field($_title),
         );
         echo sprintf(
             '<textarea id="%s" class="regular-text" name="%s" rows="%s" cols="%s">%s</textarea>',
-            esc_html($_postmeta_name),
-            esc_html($_postmeta_name),
-            esc_html($rows),
-            esc_html($cols),
-            wp_kses_post($_value),
+            sanitize_text_field($_postmeta_name),
+            sanitize_text_field($_postmeta_name),
+            sanitize_text_field($rows),
+            sanitize_text_field($cols),
+            sanitize_text_field($_value),
         );
     }
 
@@ -283,21 +283,21 @@ class TgsEa_Post
         $_value = get_post_meta($post_id, $_postmeta_name, true);
         echo sprintf(
             '<label for="%s">%s</label>',
-            esc_html($_postmeta_name),
-            esc_html($_title),
+            sanitize_text_field($_postmeta_name),
+            sanitize_text_field($_title),
         );
         echo sprintf(
             '<select name="%s" id="%s" %s><option value=""></option>',
-            esc_html($_postmeta_name),
-                esc_html($_postmeta_name),
+            sanitize_text_field($_postmeta_name),
+            sanitize_text_field($_postmeta_name),
             ($required) ? 'required' : '',
         );
         foreach ($optionlist as $item) {
             echo sprintf(
                 '<option value="%s" %s >%s</option>',
-                esc_html($item),
+                sanitize_text_field($item),
                 ($item == $_value) ? 'selected' : '',
-                esc_html($item),
+                sanitize_text_field($item),
             );
         }
         echo sprintf(

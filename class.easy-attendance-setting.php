@@ -61,9 +61,9 @@ class TgsEa_Setting {
         $__option_name = TGSEA::OPTION_NAME.$name;
         echo sprintf(
             '<input type="text" id="%s" name="%s" value="%s">',
-            esc_html($__option_name),
-            esc_html($__option_name),
-            get_option(esc_html($__option_name))
+            sanitize_text_field($__option_name),
+            sanitize_text_field($__option_name),
+            get_option(sanitize_text_field($__option_name))
         );
     }
 
