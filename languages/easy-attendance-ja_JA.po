@@ -1,0 +1,131 @@
+# Blank WordPress Pot
+# Copyright 2014 ...
+# This file is distributed under the GNU General Public License v3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Blank WordPress Pot v1.0.0\n"
+"Report-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
+"POT-Creation-Date: 2022-05-22 23:39+0900\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Your Team <translations@example.com>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;"
+"_x:1,2c;_n:1,2;_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: class.easy-attendance-post.php:33 class.easy-attendance-post.php:35
+#: class.easy-attendance-post.php:85
+msgid "Easy Attendance"
+msgstr "かんたん出席"
+
+#: class.easy-attendance-post.php:36
+msgid "Attendance List"
+msgstr "出席一覧"
+
+#: class.easy-attendance-post.php:37 class.easy-attendance-post.php:38
+msgid "Add Attendance"
+msgstr "出席データ追加"
+
+#: class.easy-attendance-post.php:39
+msgid "Edit Attendance"
+msgstr "出席データ編集"
+
+#: class.easy-attendance-post.php:96 class.easy-attendance-post.php:97
+msgid "Export Attendance CSV"
+msgstr "出席CSV出力"
+
+#: class.easy-attendance-post.php:138
+msgid "wp_nonce not set"
+msgstr "wp_nonceがセットされていません。管理者に連絡してください"
+
+#: class.easy-attendance-post.php:145
+msgid "wp_nonce error occerd"
+msgstr "システムエラーが発生しました。管理者に連絡してください"
+
+#: class.easy-attendance-post.php:157
+msgid "you dont have permitting"
+msgstr "データのアクセス権限がありません。管理者に連絡してください"
+
+#: class.easy-attendance-setting.php:29 class.easy-attendance-setting.php:38
+msgid "Easy Attendance Settings"
+msgstr "かんたん出席設定"
+
+#: class.easy-attendance-setting.php:30
+msgid "Easy Attendance Settings "
+msgstr "かんたん出席設定 "
+
+#: class.easy-attendance-setting.php:39
+msgid "Title Settings"
+msgstr "タイトル設定"
+
+#: easy-attendance.php:58
+msgid "Memeber AA"
+msgstr "メンバーA"
+
+#: easy-attendance.php:59
+msgid "Memeber BB"
+msgstr "メンバーB"
+
+#: easy-attendance.php:60
+msgid "Memeber CC"
+msgstr "メンバーC"
+
+#: easy-attendance.php:61
+msgid "Memeber DD"
+msgstr "メンバーD"
+
+#: easy-attendance.php:62
+msgid "Memeber EE"
+msgstr "メンバーE"
+
+#: views/outputcsv.php:7
+msgid ""
+"When you click the button below WordPress will create an CSV file for you to "
+"save to your computer."
+msgstr "このボタンをクリックすると指定した場所にCSVが出力されます。"
+
+#: views/outputcsv.php:9
+msgid "Choose what to export"
+msgstr "エクスポート対象を選んでください"
+
+#: views/outputcsv.php:16
+msgid "Download Export CSV File"
+msgstr "CSVファイルをダウンロードする"
+
+#: views/setting.php:2
+msgid "Setting Item Titles"
+msgstr "出力項目名設定"
+
+#: views/setting.php:12
+msgid "Explanation of Name"
+msgstr "名称を設定します"
+
+#: views/setting.php:22
+msgid "Explanation of Date"
+msgstr "日付の説明を設定します"
+
+#: views/setting.php:32
+msgid "Explanation of Start Time"
+msgstr "開始時刻の説明を設定します"
+
+#: views/setting.php:42
+msgid "Explanation of End Time"
+msgstr "終了時刻の説明を設定します"
+
+#: views/setting.php:52
+msgid "Explanation of Time"
+msgstr "時間の説明を設定します"
+
+#: views/setting.php:62
+msgid "Explanation of Memo"
+msgstr "メモの説明を設定します"

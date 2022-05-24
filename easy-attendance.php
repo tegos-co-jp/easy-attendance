@@ -3,7 +3,7 @@
 Plugin Name: Easy Attendance
 Plugin URI: https://www.tegos.co.jp/easy-attendance-plugin/
 Description: "Easy Attendance" provides custom post types in a simplified format.It is possible to output registered custom post types in CSV format.
-Version: 1.0.0
+Version: 1.0.1
 Author: TEGOS.K.K
 Author URI: https://www.tegos.co.jp/aboutus/
 License: GPL2
@@ -100,7 +100,23 @@ if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
 	add_action( 'init', array( 'TgsEa_Setting', 'init' ) );
 }
 
-function tgsea_plugin_override() {
-    load_plugin_textdomain(TGSEA_DOMAIN,false,TGSEA__PLUGIN_DIR);
+//function tgsea_load_plugin_textdomain() {
+//    load_plugin_textdomain(TGSEA_DOMAIN);
+//}
+//add_action( 'plugins_loaded', 'tgsea_load_plugin_textdomain' );
+//
+
+add_action( 'plugins_loaded', 'tgsea_load_textdomain' );
+
+/**
+ * Load plugin textdomain.
+ */
+function tgsea_load_textdomain() {
+    $path = dirname( plugin_basename(__FILE__)) . '/languages';
+    $result = load_plugin_textdomain( dirname( plugin_basename(__FILE__)), false, $path );
+// for debug usage
+//    if (!$result) {
+//        $locale = apply_filters('plugin_locale', get_locale(), dirname( plugin_basename(__FILE__)));
+//        die("Could not find $path/" . dirname( plugin_basename(__FILE__)) . "-$locale.mo.");
+//    }
 }
-add_action( 'plugins_loaded', 'tgsea_plugin_override' );

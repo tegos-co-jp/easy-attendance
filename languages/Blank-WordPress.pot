@@ -12,7 +12,7 @@ msgstr ""
 "<translations@example."
 "com>\n"
 "POT-Creation-Date: "
-"2022-04-28 21:24+0900\n"
+"2022-05-22 23:39+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Your "
 "Name <you@example.com>\n"
@@ -51,76 +51,78 @@ msgstr ""
 "X-Poedit-"
 "SearchPath-0: .\n"
 
-#: class.easy-attendance-post.php:29
-msgid "TEGOS勤怠"
-msgstr ""
-
-#: class.easy-attendance-post.php:31
-msgid "てご勤怠"
-msgstr ""
-
-#: class.easy-attendance-post.php:32
-msgid "勤怠一覧"
-msgstr ""
-
 #: class.easy-attendance-post.php:33
-msgid "勤怠追加"
-msgstr ""
-
-#: class.easy-attendance-post.php:34
-msgid "勤怠を追加"
-msgstr ""
-
 #: class.easy-attendance-post.php:35
-msgid "勤怠を編集"
+#: class.easy-attendance-post.php:85
+msgid "Easy Attendance"
 msgstr ""
 
-#: class.easy-attendance-post.php:77
-msgid "TEGOSきんたい"
+#: class.easy-attendance-post.php:36
+msgid "Attendance List"
 msgstr ""
 
-#: class.easy-attendance-post.php:87
-msgid "勤怠CSV出力"
+#: class.easy-attendance-post.php:37
+#: class.easy-attendance-post.php:38
+msgid "Add Attendance"
 msgstr ""
 
-#: class.easy-attendance-post.php:88
-msgid "CSV出力"
+#: class.easy-attendance-post.php:39
+msgid "Edit Attendance"
 msgstr ""
 
-#: class.easy-attendance-setting.php:27
-msgid " 設定画面"
+#: class.easy-attendance-post.php:96
+#: class.easy-attendance-post.php:97
+msgid ""
+"Export Attendance CSV"
 msgstr ""
 
-#: class.easy-attendance-setting.php:28
-msgid "Tegos "
+#: class.easy-attendance-post.php:138
+msgid "wp_nonce not set"
 msgstr ""
 
-#: class.easy-attendance-setting.php:36
-msgid "Tegos 設定画面"
+#: class.easy-attendance-post.php:145
+msgid ""
+"wp_nonce error occerd"
 msgstr ""
 
-#: class.easy-attendance-setting.php:37
-msgid "タイトル設定"
+#: class.easy-attendance-post.php:157
+msgid ""
+"you dont have permitting"
+msgstr ""
+
+#: class.easy-attendance-setting.php:29
+#: class.easy-attendance-setting.php:38
+msgid ""
+"Easy Attendance Settings"
+msgstr ""
+
+#: class.easy-attendance-setting.php:30
+msgid ""
+"Easy Attendance Settings "
+msgstr ""
+
+#: class.easy-attendance-setting.php:39
+msgid "Title Settings"
 msgstr ""
 
 #: easy-attendance.php:58
-msgid "社員AA"
+msgid "Memeber AA"
 msgstr ""
 
 #: easy-attendance.php:59
-msgid "社員BB"
+msgid "Memeber BB"
 msgstr ""
 
 #: easy-attendance.php:60
-msgid "社員CC"
+msgid "Memeber CC"
 msgstr ""
 
 #: easy-attendance.php:61
-msgid "社員DD"
+msgid "Memeber DD"
 msgstr ""
 
 #: easy-attendance.php:62
-msgid "社員EE"
+msgid "Memeber EE"
 msgstr ""
 
 #: views/outputcsv.php:7
