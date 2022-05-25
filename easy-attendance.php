@@ -79,7 +79,7 @@ if ( ! class_exists( 'TGSEA' ) ) :
 
 endif; // class_exists check
 
-define( 'TGSEA__VERSION', '1.0.0' );
+define( 'TGSEA__VERSION', '1.0.1' );
 define( 'TGSEA__MINIMUM_WP_VERSION', '5.7' );
 define( 'TGSEA__PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'TGSEA__PLUGIN_URL', plugins_url( '/', __FILE__ ) );
@@ -100,11 +100,6 @@ if ( is_admin() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
 	add_action( 'init', array( 'TgsEa_Setting', 'init' ) );
 }
 
-//function tgsea_load_plugin_textdomain() {
-//    load_plugin_textdomain(TGSEA_DOMAIN);
-//}
-//add_action( 'plugins_loaded', 'tgsea_load_plugin_textdomain' );
-//
 
 add_action( 'plugins_loaded', 'tgsea_load_textdomain' );
 
